@@ -12,7 +12,7 @@ export default function Accordion({ section }) {
           <div className="accordion-item" key={value}>
             <button
               className="accordion-item"
-              type="type"
+              type="button"
               onClick={() => {
                 const newOpenSections = new Set(openSections);
                 const hasNewOpenSections = newOpenSections.has(value);
