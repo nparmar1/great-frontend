@@ -3,6 +3,7 @@ import { useState } from "react";
 
 export default function FlightBookerApp() {
   const [flightOption, setFlightOption] = useState("one-way");
+  const [departureDate, setDepartureDate] = useState();
 
   return (
     <div>
@@ -10,13 +11,20 @@ export default function FlightBookerApp() {
         className="flight-booker"
         onSubmit={(e) => {
           e.preventDefault();
+          if (flightOption === "one-way") {
+            alert(`You have booked a one-way flight on ${""}`);
+            return;
+          }
+
+          alert(
+            `You have booked a return flight, departing on ${""} and returning on ${""}`
+          );
         }}
       >
         <select
           value={flightOption}
           onChange={(e) => {
             setFlightOption(e.target.value);
-            console.log(e.target.value);
           }}
         >
           <option value="one-way">One-way flight</option>
