@@ -43,7 +43,7 @@ export default function GenerateTableApp() {
         </div>
         <button type="submit">Submit</button>
       </form>
-      {Boolean(rows) && Boolean(columns) && <Table />}
+      {Boolean(rows) && Boolean(columns) && <Table rows={rows} columns={columns} />}
     </div>
   );
 }
