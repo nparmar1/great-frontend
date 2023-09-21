@@ -3,6 +3,7 @@ import ReactDOM from "react-dom/client";
 import AccordionApp from "./accordion/AccordionApp.jsx";
 import ContactFormApp from "./contact-form/ContactFormApp.jsx";
 import FlightBookerApp from "./flight-booker/FlightBookerApp.jsx";
+import HackerNewsApp from "./fetch-hacker-news/HackerNewsApp.jsx";
 import GenerateTableApp from "./generate-table/generateTableApp.jsx";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
@@ -10,6 +11,7 @@ ReactDOM.createRoot(document.getElementById("root")).render(
     {/* <AccordionApp /> */}
     {/* <ContactFormApp /> */}
     {/* <FlightBookerApp /> */}
-    <GenerateTableApp />
+    {/* <GenerateTableApp /> */}
+    <HackerNewsApp />
   </React.StrictMode>
 );
