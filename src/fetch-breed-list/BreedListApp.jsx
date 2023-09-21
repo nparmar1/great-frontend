@@ -16,6 +16,7 @@ image url: https://dog.ceo/api/breed/breedName/images/random
 } */
 
 import { useEffect, useState } from "react";
+import "./styles.css";
 
 export default function BreedList() {
   const [breeds, setBreeds] = useState([]);
@@ -42,27 +43,28 @@ export default function BreedList() {
   }
 
   return (
-    <div>
-      http://dogs.ceo/api/breed/
-      {
-        <select
-          value={selectedBreed}
-          onChange={(e) => {
-            setSelectedBreed(e.target.value);
-            fetchImage(e.target.value);
-          }}
-        >
-          {breeds.map((breed) => (
-            <option key={breed} value={breed}>
-              {breed}
-            </option>
-          ))}
-        </select>
-      }
-      /images/random
-      <div>
-        <img src={breedImage} alt={selectedBreed} />
-      </div>
+    <div className="App">
+      <h1>Breed List</h1>
+      <span>
+        http://dogs.ceo/api/breed/
+        {
+          <select
+            value={selectedBreed}
+            onChange={(e) => {
+              setSelectedBreed(e.target.value);
+              fetchImage(e.target.value);
+            }}
+          >
+            {breeds.map((breed) => (
+              <option key={breed} value={breed}>
+                {breed}
+              </option>
+            ))}
+          </select>
+        }
+        /images/random
+      </span>
+      <img src={breedImage} alt={selectedBreed} />
       <button onClick={() => fetchImage(selectedBreed)}>Fetch!</button>
     </div>
   );
