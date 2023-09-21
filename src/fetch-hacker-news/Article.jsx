@@ -1,19 +1,20 @@
 import { useEffect, useState } from "react";
 
 export default function Article({ id, onDelete }) {
-  const [article, setArticle] = useState({});
+  const [articleInfo, setArticleInfo] = useState({});
 
   useEffect(() => {
-    async function getArticle() {
+    async function fetchArticle() {
       const response = await fetch(
         `https://hacker-news.firebaseio.com/v0/item/${id}.json?print=pretty`
       );
+      const data = await response.json();
+      const { by, url, title } = data;
 
-      const { by, url, title } = await response.json();
-      setArticle({ by, url, title });
+      setArticleInfo({ by, url, title });
     }
 
-    getArticle();
+    fetchArticle();
   }, []);
 
   return (
@@ -26,10 +27,10 @@ export default function Article({ id, onDelete }) {
         padding: "8px",
       }}
     >
-      <h2>{article.title}</h2>
-      <a href={article.url}>{article.url}</a>
-      <p>By {article.by}</p>
-      <button onClick={() => onDelete(id)}>delete</button>
+      <h2>{articleInfo.title}</h2>
+      <a href={`${articleInfo.url}`}>{articleInfo.url}</a>
+      <p>By {articleInfo.by}</p>
+      <button onClick={() => onDelete(id)}>Delete</button>
     </div>
   );
 }
