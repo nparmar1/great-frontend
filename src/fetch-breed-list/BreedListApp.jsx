@@ -6,6 +6,8 @@ Recreate https://dog.ceo/dog-api/breeds-list
 2) Once a breed is selected, render an image based off the selected breed
 3) When the Fetch! button is clicked, the application should grab and
    render a different image for the selected breed.
+
+image url: https://dog.ceo/api/breed/breedName/images/random
 */
 /**
  * {
@@ -13,6 +15,55 @@ Recreate https://dog.ceo/dog-api/breeds-list
 "status": "success"
 } */
 
+import { useEffect, useState } from "react";
+
 export default function BreedList() {
-    return <div>Hello!!!!!!!!!</div>
+  const [breeds, setBreeds] = useState([]);
+  const [selectedBreed, setSelectedBreed] = useState("");
+  const [breedImage, setBreedImage] = useState("");
+
+  useEffect(() => {
+    async function getDogNames() {
+      const response = await fetch("https://dog.ceo/api/breeds/list/all");
+      const { message } = await response.json();
+
+      setBreeds(Object?.keys(message));
+    }
+
+    getDogNames();
+  }, []);
+
+  async function fetchImage(breed) {
+    const response = await fetch(
+      `https://dog.ceo/api/breed/${breed}/images/random`
+    );
+    const data = await response.json();
+    setBreedImage(data?.message);
+  }
+
+  return (
+    <div>
+      http://dogs.ceo/api/breed/
+      {
+        <select
+          value={selectedBreed}
+          onChange={(e) => {
+            setSelectedBreed(e.target.value);
+            fetchImage(e.target.value);
+          }}
+        >
+          {breeds.map((breed) => (
+            <option key={breed} value={breed}>
+              {breed}
+            </option>
+          ))}
+        </select>
+      }
+      /images/random
+      <div>
+        <img src={breedImage} alt={selectedBreed} />
+      </div>
+      <button onClick={() => fetchImage(selectedBreed)}>Fetch!</button>
+    </div>
+  );
 }
