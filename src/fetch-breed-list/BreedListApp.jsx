@@ -16,56 +16,31 @@ image url: https://dog.ceo/api/breed/breedName/images/random
 } */
 
 import { useEffect, useState } from "react";
-import "./styles.css";
+import BreedList from "./BreedList";
 
-export default function BreedList() {
+export default function BreedListApp() {
   const [breeds, setBreeds] = useState([]);
-  const [selectedBreed, setSelectedBreed] = useState("");
-  const [breedImage, setBreedImage] = useState("");
 
   useEffect(() => {
-    async function getDogNames() {
+    async function getBreedList() {
       const response = await fetch("https://dog.ceo/api/breeds/list/all");
       const { message } = await response.json();
 
       setBreeds(Object?.keys(message));
     }
 
-    getDogNames();
+    getBreedList();
   }, []);
 
-  async function fetchImage(breed) {
-    const response = await fetch(
-      `https://dog.ceo/api/breed/${breed}/images/random`
-    );
-    const data = await response.json();
-    setBreedImage(data?.message);
-  }
-
   return (
-    <div className="App">
-      <h1>Breed List</h1>
+    <>
+      <h1>Breeds List</h1>
       <span>
-        http://dogs.ceo/api/breed/
-        {
-          <select
-            value={selectedBreed}
-            onChange={(e) => {
-              setSelectedBreed(e.target.value);
-              fetchImage(e.target.value);
-            }}
-          >
-            {breeds.map((breed) => (
-              <option key={breed} value={breed}>
-                {breed}
-              </option>
-            ))}
-          </select>
-        }
+        https//dog.ceo/api/breed/
+        <BreedList breeds={breeds} />
         /images/random
       </span>
-      <img src={breedImage} alt={selectedBreed} />
-      <button onClick={() => fetchImage(selectedBreed)}>Fetch!</button>
-    </div>
+      <img src={""} alt="" />
+    </>
   );
 }
