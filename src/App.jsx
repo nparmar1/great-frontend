@@ -1,6 +1,5 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import TabsApp from "./tabs/TabsApp.jsx";
 import AccordionApp from "./accordion/AccordionApp.jsx";
 import ContactFormApp from "./contact-form/ContactFormApp.jsx";
 import FlightBookerApp from "./flight-booker/FlightBookerApp.jsx";
@@ -12,6 +11,5 @@ ReactDOM.createRoot(document.getElementById("root")).render(
     {/* <ContactFormApp /> */}
     {/* <FlightBookerApp /> */}
     {/* <GenerateTableApp /> */}
-    <TabsApp />
   </React.StrictMode>
 );
