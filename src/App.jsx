@@ -8,10 +8,10 @@ import GenerateTableApp from "./generate-table/generateTableApp.jsx";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
+    <TabsApp />
     {/* <AccordionApp /> */}
     {/* <ContactFormApp /> */}
     {/* <FlightBookerApp /> */}
     {/* <GenerateTableApp /> */}
-    <TabsApp />
   </React.StrictMode>
 );
