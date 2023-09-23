@@ -1,5 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
+import TabsApp from "./tabs/TabsApp.jsx";
 import AccordionApp from "./accordion/AccordionApp.jsx";
 import ContactFormApp from "./contact-form/ContactFormApp.jsx";
 import FetchBreedApp from "./fetch-breed-list/fetchBreedApp.jsx";
@@ -9,11 +10,12 @@ import { HackerNewsApp } from "./fetch-hacker-news/HackerNewsApp.jsx";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
+    <TabsApp />
     {/* <AccordionApp /> */}
     {/* <ContactFormApp /> */}
     {/* <FlightBookerApp /> */}
     {/* <GenerateTableApp /> */}
     {/* <HackerNewsApp /> */}
-    <FetchBreedApp />
+    {/* <FetchBreedApp /> */}
   </React.StrictMode>
 );
