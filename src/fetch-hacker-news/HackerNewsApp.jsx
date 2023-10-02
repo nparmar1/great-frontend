@@ -15,7 +15,7 @@
 import { useEffect, useState } from "react";
 import Article from "./Article";
 
-export function HackerNewsApp() {
+export default function HackerNewsApp() {
   const [ids, setIds] = useState([]);
 
   useEffect(() => {
