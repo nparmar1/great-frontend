@@ -12,19 +12,6 @@ const CELLS_IN_A_LINE = [
   [2, 4, 6],
 ];
 
-function Cell({ index, disabled, mark, turn, onClick }) {
-  return (
-    <button
-      aria-label={mark == null ? `Mark cell ${index} as ${turn}` : undefined}
-      className="cell"
-      disabled={disabled}
-      onClick={onClick}
-    >
-      <span>{mark}</span>
-    </button>
-  );
-}
-
 function determineWinner(board) {
   for (let i = 0; i < CELLS_IN_A_LINE.length; i++) {
     const [x, y, z] = CELLS_IN_A_LINE[i];
@@ -37,14 +24,32 @@ function determineWinner(board) {
   return null;
 }
 
+function Cell({ index, disabled, mark, turn, onClick }) {
+  return (
+    <button
+      aria-label={mark == null ? `Mark cell ${index} as ${turn}` : undefined}
+      className="cell"
+      disabled={disabled}
+      onClick={onClick}
+    >
+      <span aria-hidden={true}>{mark}</span>
+    </button>
+  );
+}
+
 export default function TicTacToeApp() {
   const [board, setBoard] = useState(Array(9).fill(null));
   const [xIsPlaying, setIsXplaying] = useState(true);
 
   const winner = determineWinner(board);
 
+  function onReset() {
+    setBoard(Array(9).fill(null));
+    setIsXplaying(true);
+  }
+
   function getStatusMessage() {
-    if (winner != null) {
+    if (winner !== null) {
       return `Player ${winner} wins!`;
     }
 
@@ -55,16 +60,11 @@ export default function TicTacToeApp() {
     return `Player ${xIsPlaying ? "X" : "O"} turn`;
   }
 
-  function onReset() {
-    setBoard(Array(9).fill(null));
-    setIsXplaying(true);
-  }
-
   return (
     <div className="app">
       <div aria-live="polite">{getStatusMessage()}</div>
       <div className="board">
-        {new Array(9)
+        {Array(9)
           .fill(null)
           .map((_, index) => index)
           .map((cellIndex) => {
@@ -72,10 +72,8 @@ export default function TicTacToeApp() {
             return (
               <Cell
                 key={cellIndex}
-                disabled={board[cellIndex] != null || winner != null}
-                index={cellIndex}
                 mark={board[cellIndex]}
-                turn={turn}
+                disabled={board[cellIndex] != null || winner != null}
                 onClick={() => {
                   const newBoard = board.slice();
                   newBoard[cellIndex] = turn;
@@ -88,17 +86,16 @@ export default function TicTacToeApp() {
       </div>
       <button
         onClick={() => {
-          if (winner === null) {
+          if (winner == null) {
             const confirm = window.confirm(
               "Are you sure you want to reset the game?"
             );
-
             if (!confirm) {
               return;
             }
-
-            onReset();
           }
+
+          onReset();
         }}
       >
         Reset
