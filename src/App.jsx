@@ -1,6 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import TabsApp from "./tabs/TabsApp.jsx";
+import ToDoListApp from "./to-do-list/ToDoListApp.jsx";
 import AccordionApp from "./accordion/AccordionApp.jsx";
 import TicTacToeApp from "./tic-tac-toe/TicTacToeApp.jsx";
 import GridLightsApp from "./grid-lights/GridLightsApp.jsx";
@@ -18,10 +19,11 @@ ReactDOM.createRoot(document.getElementById("root")).render(
     {/* <FlightBookerApp /> */}
     {/* <GenerateTableApp /> */}
     {/* <HackerNewsApp /> */}
-    <TicTacToeApp />
+    {/* <TicTacToeApp /> */}
     {/* <FetchBreedApp /> */}
     {/* <TabsApp /> */}
     {/* <SearchApp /> */}
     {/* <GridLightsApp /> */}
+    <ToDoListApp />
   </React.StrictMode>
 );
