@@ -20,7 +20,7 @@ ReactDOM.createRoot(document.getElementById("root")).render(
     {/* <HackerNewsApp /> */}
     {/* <TicTacToeApp /> */}
     {/* <FetchBreedApp /> */}
-    {/* <TabsApp /> */}
+    <TabsApp />
     {/* <SearchApp /> */}
     {/* <GridLightsApp /> */}
   </React.StrictMode>

@@ -11,17 +11,12 @@ export default function Tabs({ items }) {
 
           return (
             <button
-              key={value}
-              type="button"
-              onClick={() => {
-                setItemValue(value);
-              }}
-              className={[
-                "tabs-list-item",
-                isActiveValue && "tabs-list-item--active",
-              ]
+              className={["tabs-list-item", isActiveValue && "tabs-list-item--active"]
                 .filter(Boolean)
                 .join(" ")}
+              key={value}
+              type="button"
+              onClick={() => setItemValue(value)}
             >
               {label}
             </button>
