@@ -13,13 +13,13 @@ import GenerateTableApp from "./generate-table/generateTableApp.jsx";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
-    <AccordionApp />
+    {/* <AccordionApp /> */}
     {/* <ContactFormApp /> */}
     {/* <FlightBookerApp /> */}
     {/* <GenerateTableApp /> */}
     {/* <HackerNewsApp /> */}
     {/* <TicTacToeApp /> */}
-    {/* <FetchBreedApp /> */}
+    <FetchBreedApp />
     {/* <TabsApp /> */}
     {/* <SearchApp /> */}
     {/* <GridLightsApp /> */}
