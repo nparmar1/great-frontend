@@ -1,27 +1,26 @@
 import { useState } from "react";
 
 export default function Accordion({ section }) {
-  const [openSections, setOpenSections] = useState(new Set());
+  const [openSection, setOpenSection] = useState(new Set());
 
   return (
     <div className="accordion">
       {section.map(({ value, title, contents }) => {
-        const isExpanded = openSections.has(value);
+        const isExpanded = openSection.has(value);
 
         return (
           <div className="accordion-item" key={value}>
             <button
-              className="accordion-item"
+              className="accordion-item-title"
               type="button"
               onClick={() => {
-                const newOpenSections = new Set(openSections);
-                const hasNewOpenSections = newOpenSections.has(value);
+                const newOpenSection = new Set(openSection);
+                const hasNewOpenSection = newOpenSection.has(value);
 
-                hasNewOpenSections
-                  ? newOpenSections.delete(value)
-                  : newOpenSections.add(value);
-
-                setOpenSections(newOpenSections);
+                hasNewOpenSection
+                  ? newOpenSection.delete(value)
+                  : newOpenSection.add(value);
+                setOpenSection(newOpenSection);
               }}
             >
               {title}
@@ -35,7 +34,7 @@ export default function Accordion({ section }) {
                   .join(" ")}
               />
             </button>
-            <div className="accordion-item-contents" hidden={!isExpanded}>
+            <div className="accordion-contents" hidden={!isExpanded}>
               {contents}
             </div>
           </div>
