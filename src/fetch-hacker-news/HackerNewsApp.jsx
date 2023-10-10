@@ -1,52 +1,36 @@
-/**
- * https://github.com/HackerNews/API
- * https://hacker-news.firebaseio.com/v0/topstories.json?print=pretty
- * https://hacker-news.firebaseio.com/v0/item/29494189.json?print=pretty
-
- Step 1) We will be fetching a list of ID from https://hacker-news.firebaseio.com/v0/topstories.json?print=pretty
- Step 2) Store this list of ID in state and control the length of the list to 5 items
- Step 3) Based on the list of ID, i will be rendering a new Article component and the component will
-        take a prop of id in order to use that to fetch for an individual article
- Step 4) Inside the Article component, after we have fetched for the article
-         we will be getting the by, url, title so we can render an article
-* bonus: load more feature
-*/
-
-import { useEffect, useState } from "react";
 import Article from "./Article";
+import { useState, useEffect } from "react";
 
 export default function HackerNewsApp() {
   const [ids, setIds] = useState([]);
+  const [start, setStart] = useState(0);
 
   useEffect(() => {
-    async function fetchHackerNewsIds() {
+    async function fetchNews() {
       const response = await fetch(
-        `https://hacker-news.firebaseio.com/v0/topstories.json?print=pretty`
+        "https://hacker-news.firebaseio.com/v0/topstories.json?print=pretty"
       );
       const data = await response.json();
-      const fiveIds = data.slice(0, 5);
-      setIds(fiveIds);
+
+      const firstFiveArticles = data.slice(0, start + 5);
+      setIds(firstFiveArticles);
     }
 
-    fetchHackerNewsIds();
-  }, []);
+    fetchNews();
+  }, [start]);
 
-  function deleteArticle(deletedId) {
-    console.log("hello");
-    const updatedIds = ids.filter((id) => id !== deletedId);
+  function deleteArticle(prevId) {
+    const updatedIds = ids.filter((id) => id !== prevId);
     setIds(updatedIds);
   }
 
   return (
-    <div
-      style={{
-        backgroundColor: "#eee",
-      }}
-    >
+    <div style={{ backgroundColor: "#eee" }}>
       <h1>Stories</h1>
       {ids.map((id) => (
-        <Article key={id} id={id} onDelete={deleteArticle} />
+        <Article key={id} id={id} onClick={deleteArticle} />
       ))}
+      <button onClick={() => setStart(s => s + 5)}>Load More</button>
     </div>
   );
 }
