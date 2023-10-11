@@ -16,7 +16,7 @@ function determineWinner(board) {
   for (let i = 0; i < CELLS_IN_A_LINE.length; i++) {
     const [x, y, z] = CELLS_IN_A_LINE[i];
 
-    if (board[x] != null && board[x] === board[y] && board[y] === board[z]) {
+    if (board[x] !== null && board[x] === board[y] && board[y] === board[z]) {
       return board[x];
     }
   }
@@ -24,29 +24,19 @@ function determineWinner(board) {
   return null;
 }
 
-function Cell({ index, disabled, mark, turn, onClick }) {
+function Cell({ mark, onClick, disabled }) {
   return (
-    <button
-      aria-label={mark == null ? `Mark cell ${index} as ${turn}` : undefined}
-      className="cell"
-      disabled={disabled}
-      onClick={onClick}
-    >
-      <span aria-hidden={true}>{mark}</span>
+    <button className="cell" onClick={onClick} disabled={disabled}>
+      <span>{mark}</span>
     </button>
   );
 }
 
 export default function TicTacToeApp() {
+  const [isPlayerX, setIsPlayerX] = useState(true);
   const [board, setBoard] = useState(Array(9).fill(null));
-  const [xIsPlaying, setIsXplaying] = useState(true);
 
   const winner = determineWinner(board);
-
-  function onReset() {
-    setBoard(Array(9).fill(null));
-    setIsXplaying(true);
-  }
 
   function getStatusMessage() {
     if (winner !== null) {
@@ -54,48 +44,51 @@ export default function TicTacToeApp() {
     }
 
     if (!board.includes(null)) {
-      return `It's a draw!`;
+      `It's a draw!`;
     }
 
-    return `Player ${xIsPlaying ? "X" : "O"} turn`;
+    return `Player ${isPlayerX ? "X" : "O"}`;
+  }
+
+  function resetAll() {
+    setBoard(Array(9).fill(null));
+    setIsPlayerX(true);
   }
 
   return (
     <div className="app">
-      <div aria-live="polite">{getStatusMessage()}</div>
+      <div>{getStatusMessage()}</div>
       <div className="board">
         {Array(9)
           .fill(null)
-          .map((_, index) => index)
-          .map((cellIndex) => {
-            const turn = xIsPlaying ? "X" : "O";
+          .map((_, idx) => idx)
+          .map((cellIdx) => {
+            const turn = isPlayerX ? "X" : "O";
+
             return (
               <Cell
-                key={cellIndex}
-                mark={board[cellIndex]}
-                disabled={board[cellIndex] != null || winner != null}
+                key={cellIdx}
                 onClick={() => {
                   const newBoard = board.slice();
-                  newBoard[cellIndex] = turn;
+                  newBoard[cellIdx] = turn;
                   setBoard(newBoard);
-                  setIsXplaying(!xIsPlaying);
+                  setIsPlayerX(!isPlayerX);
                 }}
+                mark={board[cellIdx]}
+                disabled={board[cellIdx] !== null || winner !== null}
               />
             );
           })}
       </div>
       <button
         onClick={() => {
-          if (winner == null) {
-            const confirm = window.confirm(
-              "Are you sure you want to reset the game?"
-            );
-            if (!confirm) {
-              return;
-            }
+          const confirm = window.confirm("Are you sure you want to reset?");
+
+          if (!confirm) {
+            return;
           }
 
-          onReset();
+          resetAll();
         }}
       >
         Reset
