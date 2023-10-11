@@ -116,7 +116,11 @@ export default function SearchApp() {
       <input value={query} onChange={(e) => setQuery(e.target.value)} />
       <div>
         {suggestions.map((suggestion) => (
-          <div key={suggestion}>{suggestion}</div>
+          <>
+            <ul>
+              <li key={suggestion}>{suggestion}</li>
+            </ul>
+          </>
         ))}
       </div>
     </>

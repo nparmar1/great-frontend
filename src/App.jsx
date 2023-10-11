@@ -14,14 +14,14 @@ import GenerateTableApp from "./generate-table/generateTableApp.jsx";
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
     {/* <AccordionApp /> */}
-    <ContactFormApp />
+    {/* <ContactFormApp /> */}
     {/* <FlightBookerApp /> */}
     {/* <GenerateTableApp /> */}
     {/* <HackerNewsApp /> */}
     {/* <TicTacToeApp /> */}
     {/* <FetchBreedApp /> */}
     {/* <TabsApp /> */}
-    {/* <SearchApp /> */}
+    <SearchApp />
     {/* <GridLightsApp /> */}
   </React.StrictMode>
 );
