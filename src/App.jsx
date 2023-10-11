@@ -18,8 +18,8 @@ ReactDOM.createRoot(document.getElementById("root")).render(
     {/* <FlightBookerApp /> */}
     {/* <GenerateTableApp /> */}
     {/* <HackerNewsApp /> */}
-    {/* <TicTacToeApp /> */}
-    <FetchBreedApp />
+    <TicTacToeApp />
+    {/* <FetchBreedApp /> */}
     {/* <TabsApp /> */}
     {/* <SearchApp /> */}
     {/* <GridLightsApp /> */}
