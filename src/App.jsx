@@ -19,8 +19,8 @@ ReactDOM.createRoot(document.getElementById("root")).render(
     {/* <ContactFormApp /> */}
     {/* <FlightBookerApp /> */}
     {/* <GenerateTableApp /> */}
-    <HackerNewsApp />
-    {/* <TicTacToeApp /> */}
+    {/* <HackerNewsApp /> */}
+    <TicTacToeApp />
     {/* <FetchBreedApp /> */}
     {/* <TabsApp /> */}
     {/* <SearchApp /> */}

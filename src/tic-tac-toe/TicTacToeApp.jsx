@@ -1,5 +1,5 @@
-import { useState } from "react";
 import "./styles.css";
+import { useState } from "react";
 
 const CELLS_IN_A_LINE = [
   [0, 1, 2],
@@ -12,6 +12,14 @@ const CELLS_IN_A_LINE = [
   [2, 4, 6],
 ];
 
+function Cell({ mark, onClick, disabled }) {
+  return (
+    <button className="cell" onClick={onClick} disabled={disabled}>
+      {mark}
+    </button>
+  );
+}
+
 function determineWinner(board) {
   for (let i = 0; i < CELLS_IN_A_LINE.length; i++) {
     const [x, y, z] = CELLS_IN_A_LINE[i];
@@ -22,14 +30,6 @@ function determineWinner(board) {
   }
 
   return null;
-}
-
-function Cell({ mark, onClick, disabled }) {
-  return (
-    <button className="cell" onClick={onClick} disabled={disabled}>
-      <span>{mark}</span>
-    </button>
-  );
 }
 
 export default function TicTacToeApp() {
@@ -44,20 +44,20 @@ export default function TicTacToeApp() {
     }
 
     if (!board.includes(null)) {
-      `It's a draw!`;
+      return `It's a draw!`;
     }
 
-    return `Player ${isPlayerX ? "X" : "O"}`;
+    return `Player ${isPlayerX ? "X" : "O"}'s turn`;
   }
 
-  function resetAll() {
+  function restAll() {
     setBoard(Array(9).fill(null));
     setIsPlayerX(true);
   }
 
   return (
     <div className="app">
-      <div>{getStatusMessage()}</div>
+      {getStatusMessage()}
       <div className="board">
         {Array(9)
           .fill(null)
@@ -68,14 +68,15 @@ export default function TicTacToeApp() {
             return (
               <Cell
                 key={cellIdx}
+                mark={board[cellIdx]}
+                disabled={board[cellIdx] !== null || winner !== null}
                 onClick={() => {
                   const newBoard = board.slice();
                   newBoard[cellIdx] = turn;
-                  setBoard(newBoard);
                   setIsPlayerX(!isPlayerX);
+
+                  setBoard(newBoard);
                 }}
-                mark={board[cellIdx]}
-                disabled={board[cellIdx] !== null || winner !== null}
               />
             );
           })}
@@ -88,7 +89,7 @@ export default function TicTacToeApp() {
             return;
           }
 
-          resetAll();
+          restAll();
         }}
       >
         Reset
