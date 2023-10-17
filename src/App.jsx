@@ -19,13 +19,13 @@ ReactDOM.createRoot(document.getElementById("root")).render(
     {/* <ContactFormApp /> */}
     {/* <FlightBookerApp /> */}
     {/* <GenerateTableApp /> */}
-    {/* <HackerNewsApp /> */}
+    <HackerNewsApp />
     {/* <TicTacToeApp /> */}
     {/* <FetchBreedApp /> */}
     {/* <TabsApp /> */}
     {/* <SearchApp /> */}
     {/* <GridLightsApp /> */}
     {/* <SearchAppTwo /> */}
-    <PhotoCarouselApp />
+    {/* <PhotoCarouselApp /> */}
   </React.StrictMode>
 );
