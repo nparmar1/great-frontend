@@ -12,11 +12,12 @@ body {
   row-gap: 16px;
 }
 
+
 .board {
   display: grid;
   width: 100%;
   grid-template-columns: repeat(3, 1fr);
-}
+} 
 
 .cell {
   background-color: #fff;
