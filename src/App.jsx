@@ -29,8 +29,8 @@ ReactDOM.createRoot(document.getElementById("root")).render(
     {/* <TabsApp /> */}
     {/* <SearchApp /> */}
     {/* <GridLightsApp /> */}
-    <SearchAppTwo />
+    {/* <SearchAppTwo /> */}
     {/* <PhotoCarouselApp /> */}
-    {/* <DataTableApp /> */}
+    <DataTableApp />
   </React.StrictMode>
 );

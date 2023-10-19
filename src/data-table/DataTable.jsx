@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react";
 
-export default function DataTableApp({ data }) {
-  const [sortedData, setSortedData] = useState(data);
+export default function DataTable({ data }) {
   const [searchTerm, setSearchTerm] = useState("");
+  const [sortedData, setSortedData] = useState(data);
+  const [sortedField, setSortedField] = useState("");
   const [isSortAsc, setIsSortAsc] = useState(true);
-  const [sortField, setSortField] = useState("");
 
   useEffect(() => {
     const filteredData = data.filter((item) =>
@@ -18,32 +18,32 @@ export default function DataTableApp({ data }) {
   }, [searchTerm]);
 
   useEffect(() => {
-    if (sortField) {
-      const sort = [...sortedData].sort((a, b) => {
-        const valueA = a[sortField];
-        const valueB = b[sortField];
+    if (sortedField) {
+      const sorted = [...sortedData].sort((a, b) => {
+        const valueA = a[sortedField];
+        const valueB = b[sortedField];
 
-        if (valueA > valueB) return isSortAsc ? 1 : -1;
         if (valueA < valueB) return isSortAsc ? -1 : 1;
-
+        if (valueA > valueB) return isSortAsc ? 1 : -1;
         return 0;
       });
 
-      setSortedData(sort);
+      setSortedData(sorted);
     }
-  }, [sortField, isSortAsc]);
+  }, [sortedField, isSortAsc]);
 
-  function handleSort(field) {
-    if (field === sortField) {
+  function fieldSort(field) {
+    if (field === sortedField) {
       setIsSortAsc(!isSortAsc);
     } else {
-      setSortField(field);
+      setSortedField(field);
       setIsSortAsc(true);
     }
   }
 
   return (
     <>
+      <h1>Search through Data</h1>
       <input
         type="text"
         placeholder="Search"
@@ -52,21 +52,11 @@ export default function DataTableApp({ data }) {
       <table>
         <thead>
           <tr>
-            <th onClick={() => handleSort("name")}>
-              Name {sortField === "name" && (isSortAsc ? "▲" : "▼")}
-            </th>
-            <th onClick={() => handleSort("email")}>
-              Email {sortField === "email" && (isSortAsc ? "▲" : "▼")}
-            </th>
-            <th onClick={() => handleSort("user")}>
-              User {sortField === "user" && (isSortAsc ? "▲" : "▼")}
-            </th>
-            <th onClick={() => handleSort("equipment")}>
-              Equipment {sortField === "equipment" && (isSortAsc ? "▲" : "▼")}
-            </th>
-            <th onClick={() => handleSort("duration")}>
-              Duration {sortField === "duration" && (isSortAsc ? "▲" : "▼")}
-            </th>
+            <th onClick={() => fieldSort("name")}>Name {sortedField === 'name' && (isSortAsc ? "▲" : "▼")}</th>
+            <th onClick={() => fieldSort("email")}>Name {sortedField === 'email' && (isSortAsc ? "▲" : "▼")}</th>
+            <th onClick={() => fieldSort("user")}>Name {sortedField === 'user' && (isSortAsc ? "▲" : "▼")}</th>
+            <th onClick={() => fieldSort("equipment")}>Name {sortedField === 'equipment' && (isSortAsc ? "▲" : "▼")}</th>
+            <th onClick={() => fieldSort("duration")}>Name {sortedField === 'duration' && (isSortAsc ? "▲" : "▼")}</th>
           </tr>
         </thead>
         <tbody>
@@ -75,7 +65,7 @@ export default function DataTableApp({ data }) {
               <td>{item.name}</td>
               <td>{item.email}</td>
               <td>{item.user}</td>
-              <td>{item.equipment.join(", ")}</td>
+              <td>{item.equipment}</td>
               <td>{item.duration}</td>
             </tr>
           ))}
