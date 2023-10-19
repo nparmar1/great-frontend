@@ -16,18 +16,37 @@ const fruits = [
   "banana",
 ];
 
-function getDebounceQuery(query, time = 250){
-  const [debounceQuery, setebounceQuery] = useState(query)
+function getTypeAheadResults(query) {
+  return fruits.filter((fruit) => fruit.startsWith(query.toLowerCase()));
+}
 
-    useEffect(() => {
+function getDebounceQuery(query, time = 250) {
+  const [debounce, setDebounce] = useState(query);
 
-    }, [query, time])
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setDebounce(query);
+    }, time);
+
+    return () => clearTimeout(timer);
+  }, [query, time]);
+
+  return debounce;
 }
 
 function Search({ fruits }) {
   const [query, setQuery] = useState("");
+  const [suggestions, setSuggestions] = useState([]);
 
   const debounceQuery = getDebounceQuery(query);
+
+  useEffect(() => {
+    if (debounceQuery.length > 0) {
+      const fruit = getTypeAheadResults(debounceQuery);
+
+      setSuggestions(fruit);
+    }
+  }, [debounceQuery]);
 
   return (
     <>
@@ -37,10 +56,20 @@ function Search({ fruits }) {
         placeholder="Search"
         onChange={(e) => setQuery(e.target.value)}
       />
+      {suggestions.map((suggestion) => (
+        <ul key={suggestion}>
+          <li>{suggestion}</li>
+        </ul>
+      ))}
     </>
   );
 }
 
 export default function SearchAppTwo() {
-  return <Search fruits={fruits} />;
+  return (
+    <>
+      <h1>Search Fruit</h1>
+      <Search fruits={fruits} />
+    </>
+  );
 }
