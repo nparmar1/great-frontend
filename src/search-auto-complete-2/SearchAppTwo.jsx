@@ -16,25 +16,25 @@ const fruits = [
   "banana",
 ];
 
-function getTypeAheadResults(query) {
+const getFruit = (query, fruits) => {
   return fruits.filter((fruit) => fruit.startsWith(query.toLowerCase()));
-}
+};
 
-function getDebounceQuery(query, time = 250) {
-  const [debounce, setDebounce] = useState(query);
+const getDebounceQuery = (query, time = 250) => {
+  const [value, setValue] = useState(query);
 
   useEffect(() => {
     const timer = setTimeout(() => {
-      setDebounce(query);
+      setValue(query);
     }, time);
 
     return () => clearTimeout(timer);
   }, [query, time]);
 
-  return debounce;
-}
+  return value;
+};
 
-function Search({ fruits }) {
+function SearchFruit({ fruits }) {
   const [query, setQuery] = useState("");
   const [suggestions, setSuggestions] = useState([]);
 
@@ -42,22 +42,22 @@ function Search({ fruits }) {
 
   useEffect(() => {
     if (debounceQuery.length > 0) {
-      const fruit = getTypeAheadResults(debounceQuery);
-
+      const fruit = getFruit(query, fruits);
       setSuggestions(fruit);
     }
   }, [debounceQuery]);
 
   return (
     <>
+      <h1>Search Fruit</h1>
       <input
-        value={query}
         type="text"
         placeholder="Search"
+        value={query}
         onChange={(e) => setQuery(e.target.value)}
       />
-      {suggestions.map((suggestion) => (
-        <ul key={suggestion}>
+      {suggestions.map((suggestion, idx) => (
+        <ul key={idx}>
           <li>{suggestion}</li>
         </ul>
       ))}
@@ -66,10 +66,5 @@ function Search({ fruits }) {
 }
 
 export default function SearchAppTwo() {
-  return (
-    <>
-      <h1>Search Fruit</h1>
-      <Search fruits={fruits} />
-    </>
-  );
+  return <SearchFruit fruits={fruits} />;
 }
