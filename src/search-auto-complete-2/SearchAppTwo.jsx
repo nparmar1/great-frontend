@@ -16,61 +16,31 @@ const fruits = [
   "banana",
 ];
 
-function useDebounce(query, time = 250) {
-  const [debounce, setDebounce] = useState(query);
+function getDebounceQuery(query, time = 250){
+  const [debounceQuery, setebounceQuery] = useState(query)
 
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      setDebounce(query);
-    }, time);
+    useEffect(() => {
 
-    return () => clearTimeout(timer);
-  }, [query, time]);
-
-  return debounce;
+    }, [query, time])
 }
 
-function getFruit(query, fruits) {
-  const fruit = fruits.filter((fruit) => fruit.startsWith(query));
-
-  return fruit;
-}
-
-function SearchFruit({ fruits }) {
+function Search({ fruits }) {
   const [query, setQuery] = useState("");
-  const [suggestions, setSuggestions] = useState([]);
 
-  const debounceQuery = useDebounce(query);
-
-  useEffect(() => {
-    if (debounceQuery.length > 0) {
-      const fruit = getFruit(debounceQuery, fruits);
-      setSuggestions(fruit);
-    }
-  }, [debounceQuery]);
+  const debounceQuery = getDebounceQuery(query);
 
   return (
-    <div>
+    <>
       <input
         value={query}
         type="text"
-        placeholder="Enter fruit"
+        placeholder="Search"
         onChange={(e) => setQuery(e.target.value)}
       />
-      <ul>
-        {suggestions.map((suggestion) => (
-          <li key={suggestion}>{suggestion}</li>
-        ))}
-      </ul>
-    </div>
+    </>
   );
 }
 
 export default function SearchAppTwo() {
-  return (
-    <div>
-      <h1>Search for Fruit</h1>
-      <SearchFruit fruits={fruits} />
-    </div>
-  );
+  return <Search fruits={fruits} />;
 }
