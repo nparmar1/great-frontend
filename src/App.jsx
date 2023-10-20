@@ -16,6 +16,7 @@ import HackerNewsApp from "./fetch-hacker-news/HackerNewsApp.jsx";
 import GenerateTableApp from "./generate-table/generateTableApp.jsx";
 import SearchAppTwo from "./search-auto-complete-2/SearchAppTwo.jsx";
 import PhotoCarouselApp from "./photo-carousel/PhotoCarouselApp.jsx";
+import StarRatingApp from "./star-rating/StarRatingApp.jsx";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
@@ -29,8 +30,9 @@ ReactDOM.createRoot(document.getElementById("root")).render(
     {/* <TabsApp /> */}
     {/* <SearchApp /> */}
     {/* <GridLightsApp /> */}
-    <SearchAppTwo />
+    {/* <SearchAppTwo /> */}
     {/* <PhotoCarouselApp /> */}
     {/* <DataTableApp /> */}
+    <StarRatingApp />
   </React.StrictMode>
 );
