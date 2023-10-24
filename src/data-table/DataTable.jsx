@@ -1,71 +1,80 @@
-import { useEffect, useState } from "react";
+import { useState, useEffect } from "react";
 
 export default function DataTable({ data }) {
-  const [searchTerm, setSearchTerm] = useState("");
   const [sortedData, setSortedData] = useState(data);
-  const [sortedField, setSortedField] = useState("");
-  const [isSortAsc, setIsSortAsc] = useState(true);
+  const [query, setQuery] = useState("");
+  const [fieldData, setFieldData] = useState("");
+  const [isAscending, setIsAscending] = useState(true);
 
   useEffect(() => {
-    const filteredData = data.filter((item) =>
-      Object.values(item)
-        .join(" ")
-        .toLowerCase()
-        .includes(searchTerm.toLowerCase())
+    const sort = data.filter((item, idx) =>
+      Object.values(item).join(" ").toLowerCase().includes(query.toLowerCase())
     );
 
-    setSortedData(filteredData);
-  }, [searchTerm]);
+    setSortedData(sort);
+  }, [query]);
 
   useEffect(() => {
-    if (sortedField) {
+    if (sortedData) {
       const sorted = [...sortedData].sort((a, b) => {
-        const valueA = a[sortedField];
-        const valueB = b[sortedField];
+        const valueA = a[fieldData];
+        const valueB = b[fieldData];
 
-        if (valueA < valueB) return isSortAsc ? -1 : 1;
-        if (valueA > valueB) return isSortAsc ? 1 : -1;
+        if (valueA > valueB) return isAscending ? 1 : -1;
+        if (valueA < valueB) return isAscending ? -1 : 1;
+
         return 0;
       });
 
       setSortedData(sorted);
     }
-  }, [sortedField, isSortAsc]);
+  }, [fieldData, isAscending]);
 
-  function fieldSort(field) {
-    if (field === sortedField) {
-      setIsSortAsc(!isSortAsc);
+  function handleSort(field) {
+    if (field === fieldData) {
+      setIsAscending(!isAscending);
     } else {
-      setSortedField(field);
-      setIsSortAsc(true);
+      setFieldData(field);
+      setIsAscending(true);
     }
   }
 
   return (
     <>
-      <h1>Search through Data</h1>
+      <h1>Search Data</h1>
       <input
         type="text"
         placeholder="Search"
-        onChange={(e) => setSearchTerm(e.target.value)}
+        value={query}
+        onChange={(e) => setQuery(e.target.value)}
       />
       <table>
         <thead>
           <tr>
-            <th onClick={() => fieldSort("name")}>Name {sortedField === 'name' && (isSortAsc ? "▲" : "▼")}</th>
-            <th onClick={() => fieldSort("email")}>Name {sortedField === 'email' && (isSortAsc ? "▲" : "▼")}</th>
-            <th onClick={() => fieldSort("user")}>Name {sortedField === 'user' && (isSortAsc ? "▲" : "▼")}</th>
-            <th onClick={() => fieldSort("equipment")}>Name {sortedField === 'equipment' && (isSortAsc ? "▲" : "▼")}</th>
-            <th onClick={() => fieldSort("duration")}>Name {sortedField === 'duration' && (isSortAsc ? "▲" : "▼")}</th>
+            <th onClick={() => handleSort("name")}>
+              Name {fieldData === "name" && (isAscending ? "▲" : "▼")}
+            </th>
+            <th onClick={() => handleSort("email")}>
+              Email {fieldData === "email" && (isAscending ? "▲" : "▼")}
+            </th>{" "}
+            <th onClick={() => handleSort("user")}>
+              User {fieldData === "user" && (isAscending ? "▲" : "▼")}
+            </th>{" "}
+            <th onClick={() => handleSort("equipment")}>
+              Equipment {fieldData === "equipment" && (isAscending ? "▲" : "▼")}
+            </th>{" "}
+            <th onClick={() => handleSort("duration")}>
+              Duration {fieldData === "duration" && (isAscending ? "▲" : "▼")}
+            </th>
           </tr>
         </thead>
         <tbody>
-          {sortedData.map((item, idx) => (
+          {sortedData?.map((item, idx) => (
             <tr key={idx}>
               <td>{item.name}</td>
               <td>{item.email}</td>
               <td>{item.user}</td>
-              <td>{item.equipment}</td>
+              <td>{item.equipment.join(", ")}</td>
               <td>{item.duration}</td>
             </tr>
           ))}

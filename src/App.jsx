@@ -32,7 +32,7 @@ ReactDOM.createRoot(document.getElementById("root")).render(
     {/* <GridLightsApp /> */}
     {/* <SearchAppTwo /> */}
     {/* <PhotoCarouselApp /> */}
-    {/* <DataTableApp /> */}
-    <StarRatingApp />
+    <DataTableApp />
+    {/* <StarRatingApp /> */}
   </React.StrictMode>
 );
