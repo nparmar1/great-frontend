@@ -56,13 +56,13 @@ export default function DataTable({ data }) {
             </th>
             <th onClick={() => handleSort("email")}>
               Email {fieldData === "email" && (isAscending ? "▲" : "▼")}
-            </th>{" "}
+            </th>
             <th onClick={() => handleSort("user")}>
               User {fieldData === "user" && (isAscending ? "▲" : "▼")}
-            </th>{" "}
+            </th>
             <th onClick={() => handleSort("equipment")}>
               Equipment {fieldData === "equipment" && (isAscending ? "▲" : "▼")}
-            </th>{" "}
+            </th>
             <th onClick={() => handleSort("duration")}>
               Duration {fieldData === "duration" && (isAscending ? "▲" : "▼")}
             </th>
