@@ -1,5 +1,5 @@
-import "./styles.css";
 import { useState } from "react";
+import "./styles.css";
 
 const CELLS_IN_A_LINE = [
   [0, 1, 2],
@@ -12,14 +12,6 @@ const CELLS_IN_A_LINE = [
   [2, 4, 6],
 ];
 
-function Cell({ mark, onClick, disabled }) {
-  return (
-    <button className="cell" onClick={onClick} disabled={disabled}>
-      {mark}
-    </button>
-  );
-}
-
 function determineWinner(board) {
   for (let i = 0; i < CELLS_IN_A_LINE.length; i++) {
     const [x, y, z] = CELLS_IN_A_LINE[i];
@@ -30,6 +22,14 @@ function determineWinner(board) {
   }
 
   return null;
+}
+
+function Cell({ mark, onClick, disabled }) {
+  return (
+    <button className="cell" onClick={onClick} disabled={disabled}>
+      {mark}
+    </button>
+  );
 }
 
 export default function TicTacToeApp() {
@@ -44,13 +44,13 @@ export default function TicTacToeApp() {
     }
 
     if (!board.includes(null)) {
-      return `It's a draw!`;
+      `It's a draw!`;
     }
 
     return `Player ${isPlayerX ? "X" : "O"}'s turn`;
   }
 
-  function restAll() {
+  function setReset() {
     setBoard(Array(9).fill(null));
     setIsPlayerX(true);
   }
@@ -61,21 +61,20 @@ export default function TicTacToeApp() {
       <div className="board">
         {Array(9)
           .fill(null)
-          .map((_, idx) => idx)
-          .map((cellIdx) => {
+          .map((_, idx) => {
             const turn = isPlayerX ? "X" : "O";
 
             return (
               <Cell
-                key={cellIdx}
-                mark={board[cellIdx]}
-                disabled={board[cellIdx] !== null || winner !== null}
+                key={idx}
+                mark={board[idx]}
+                disabled={board[idx] !== null || winner !== null}
                 onClick={() => {
                   const newBoard = board.slice();
-                  newBoard[cellIdx] = turn;
-                  setIsPlayerX(!isPlayerX);
+                  newBoard[idx] = turn;
 
                   setBoard(newBoard);
+                  setIsPlayerX(!isPlayerX);
                 }}
               />
             );
@@ -85,14 +84,12 @@ export default function TicTacToeApp() {
         onClick={() => {
           const confirm = window.confirm("Are you sure you want to reset?");
 
-          if (!confirm) {
-            return;
-          }
+          if (!confirm) return;
 
-          restAll();
+          setReset();
         }}
       >
-        Reset
+        Rest
       </button>
     </div>
   );
