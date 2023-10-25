@@ -1,6 +1,7 @@
 import { useState } from "react";
-import StarRating from "./StarRating";
+
 import "./styles.css";
+import StarRating from "./StarRating";
 
 export default function StarRatingApp() {
   const [rating, setRating] = useState(3);
