@@ -22,24 +22,22 @@ export function Star({ filled }) {
 }
 
 export default function StarRating({ max, rating, setRating }) {
-  const [hoveredIdx, setHoveredIx] = useState(null);
+  const [hoverIdx, setHoverIdx] = useState(null);
 
   return (
-    <div>
+    <>
       {Array(max)
         .fill(null)
         .map((_, idx) => (
-          <span 
+          <span
             key={idx}
-            onMouseEnter={() => setHoveredIx(idx)}
-            onMouseLeave={() => setHoveredIx(null)}
-            onClick={() => setRating(idx + 1)}
-            >
-            <Star
-                filled={hoveredIdx !== null ? idx <= hoveredIdx : idx < rating} 
-            />
+            onMouseEnter={() => setHoverIdx(idx)}
+            onMouseLeave={() => setHoverIdx(null)}
+            onClick={() => setRating(1 + idx)}
+          >
+            <Star filled={hoverIdx !== null ? idx <= hoverIdx : idx < rating} />
           </span>
         ))}
-    </div>
+    </>
   );
 }
