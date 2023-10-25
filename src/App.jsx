@@ -25,7 +25,7 @@ ReactDOM.createRoot(document.getElementById("root")).render(
     {/* <FlightBookerApp /> */}
     {/* <GenerateTableApp /> */}
     {/* <HackerNewsApp /> */}
-    {/* <TicTacToeApp /> */}
+    <TicTacToeApp />
     {/* <FetchBreedApp /> */}
     {/* <TabsApp /> */}
     {/* <SearchApp /> */}
@@ -33,6 +33,6 @@ ReactDOM.createRoot(document.getElementById("root")).render(
     {/* <SearchAppTwo /> */}
     {/* <PhotoCarouselApp /> */}
     {/* <DataTableApp /> */}
-    <StarRatingApp />
+    {/* <StarRatingApp /> */}
   </React.StrictMode>
 );
