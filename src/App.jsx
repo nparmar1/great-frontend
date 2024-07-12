@@ -2,7 +2,7 @@
 
 import React from "react";
 import ReactDOM from "react-dom/client";
-
+import FetchBreedListApp from "./fetch-breed-list/FetchBreedListApp.jsx";
 import TabsApp from "./tabs/TabsApp.jsx";
 import AccordionApp from "./accordion/AccordionApp.jsx";
 import TicTacToeApp from "./tic-tac-toe/TicTacToeApp.jsx";
@@ -25,6 +25,7 @@ ReactDOM.createRoot(document.getElementById("root")).render(
     {/* <GenerateTableApp /> */}
     {/* <HackerNewsApp /> */}
     {/* <TicTacToeApp /> */}
+    <FetchBreedListApp />
     {/* <TabsApp /> */}
     {/* <SearchApp /> */}
     {/* <GridLightsApp /> */}
