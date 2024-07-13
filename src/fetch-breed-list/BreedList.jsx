@@ -6,12 +6,16 @@ export default function BreedList({ breeds }) {
   const [imageUrl, setImageUrl] = useState("");
 
   async function fetchBreedUrl(breedName) {
-    const response = await fetch(
-      `https://dog.ceo/api/breed/${breedName}/images/random`
-    );
-    const data = await response.json();
+    try {
+      const response = await fetch(
+        `https://dog.ceo/api/breed/${breedName}/images/random`
+      );
+      const data = await response.json();
 
-    setImageUrl(data?.message);
+      setImageUrl(data?.message);
+    } catch (error) {
+      console.log("Error fetching image", error);
+    }
   }
 
   useEffect(() => {
