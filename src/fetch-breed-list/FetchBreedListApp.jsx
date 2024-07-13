@@ -17,29 +17,26 @@ Recreate https://dog.ceo/dog-api/breeds-list
 
 import BreedList from "./BreedList";
 import { useEffect, useState } from "react";
-import "./styles.css";
+import './styles.css'
 
-export default function FetchBreedApp() {
+export default function FetchBreedListApp() {
   const [breeds, setBreeds] = useState([]);
 
   useEffect(() => {
-    async function fetchBreeds() {
+    async function fetchBreedList() {
       const response = await fetch("https://dog.ceo/api/breeds/list/all");
       const data = await response.json();
-      const listOfBreeds = Object.keys(data?.message);
 
-      setBreeds(listOfBreeds);
+      setBreeds(Object.keys(data?.message));
     }
 
-    fetchBreeds();
+    fetchBreedList();
   }, []);
 
   return (
-    <div className="App">
+    <div className='App'>
       <h1>Breed List</h1>
-      <span>
-        <BreedList breeds={breeds} />
-      </span>
+      <BreedList breeds={breeds} />
     </div>
   );
 }

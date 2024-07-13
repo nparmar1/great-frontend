@@ -2,15 +2,14 @@
 
 import React from "react";
 import ReactDOM from "react-dom/client";
-
 import TabsApp from "./tabs/TabsApp.jsx";
 import AccordionApp from "./accordion/AccordionApp.jsx";
 import TicTacToeApp from "./tic-tac-toe/TicTacToeApp.jsx";
 import GridLightsApp from "./grid-lights/GridLightsApp.jsx";
+import FetchBreedListApp from './fetch-breed-list/FetchBreedListApp.jsx';
 import DataTableApp from "./data-table/DataTableApp.jsx";
 import SearchApp from "./search-auto-complete/SearchApp.jsx";
 import ContactFormApp from "./contact-form/ContactFormApp.jsx";
-import FetchBreedApp from "./fetch-breed-list/fetchBreedApp.jsx";
 import FlightBookerApp from "./flight-booker/FlightBookerApp.jsx";
 import HackerNewsApp from "./fetch-hacker-news/HackerNewsApp.jsx";
 import GenerateTableApp from "./generate-table/generateTableApp.jsx";
@@ -25,10 +24,10 @@ ReactDOM.createRoot(document.getElementById("root")).render(
     {/* <FlightBookerApp /> */}
     {/* <GenerateTableApp /> */}
     {/* <HackerNewsApp /> */}
-    <TicTacToeApp />
-    {/* <FetchBreedApp /> */}
+    {/* <TicTacToeApp /> */}
     {/* <TabsApp /> */}
     {/* <SearchApp /> */}
+    <FetchBreedListApp />
     {/* <GridLightsApp /> */}
     {/* <SearchAppTwo /> */}
     {/* <PhotoCarouselApp /> */}

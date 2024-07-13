@@ -1,48 +1,45 @@
-import { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
 import "./styles.css";
 
 export default function BreedList({ breeds }) {
-  const [breed, setBreed] = useState("affenpinscher");
-  const [imgUrl, setImgUrl] = useState("");
+  const [breedName, setBreedName] = useState("affenpinscher");
+  const [imageUrl, setImageUrl] = useState("");
 
-  useEffect(() => {
-    async function fetchBreed() {
+  async function fetchBreedUrl(breedName) {
+    try {
       const response = await fetch(
-        `https://dog.ceo/api/breed/${breed}/images/random`
+        `https://dog.ceo/api/breed/${breedName}/images/random`
       );
       const data = await response.json();
-      setImgUrl(data?.message);
+
+      setImageUrl(data?.message);
+    } catch (error) {
+      console.log("Error fetching image", error);
     }
-
-    fetchBreed();
-  }, [breed]);
-
-  async function fetchImage(breed) {
-    const response = await fetch(
-      `https://dog.ceo/api/breed/${breed}/images/random`
-    );
-    const data = await response.json();
-    setImgUrl(data?.message);
   }
+
+  useEffect(() => {
+    fetchBreedUrl(breedName);
+  }, [breedName]);
 
   return (
     <>
-      https://dog.ceo/api/breed/
-      <select
-        value={breed}
-        onChange={(e) => {
-          setBreed(e.target.value);
-        }}
-      >
-        {breeds?.map((breed, idx) => (
-          <option key={idx}>{breed}</option>
-        ))}
-      </select>
-      /images/random
-      <div>
-        <img src={imgUrl} alt={breed} />
-      </div>
-      <button onClick={() => fetchImage(breed)}>Fetch</button>
+      <span>
+        https://dog.ceo/api/breed/
+        <select
+          value={breedName}
+          onChange={(e) => {
+            setBreedName(e.target.value);
+          }}
+        >
+          {breeds.map((breed, idx) => (
+            <option key={idx}>{breed}</option>
+          ))}
+        </select>
+        /images/random
+      </span>
+      <img src={imageUrl} alt={breedName} />
+      <button onClick={() => fetchBreedUrl(breedName)}>Fetch</button>
     </>
   );
 }
