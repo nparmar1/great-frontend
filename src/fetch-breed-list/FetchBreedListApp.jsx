@@ -15,28 +15,29 @@ Recreate https://dog.ceo/dog-api/breeds-list
 "status": "success"
 } */
 
-import BreedList from "./BreedList";
-import { useEffect, useState } from "react";
-import './styles.css'
+import BreedList from './BreedList'
+import { useEffect, useState } from 'react';
+import './styles.css';
 
-export default function FetchBreedListApp() {
-  const [breeds, setBreeds] = useState([]);
+export default function FetchBreedListApp(){
+    const [breeds, setBreeds] = useState([]);
 
-  useEffect(() => {
-    async function fetchBreedList() {
-      const response = await fetch("https://dog.ceo/api/breeds/list/all");
-      const data = await response.json();
+    useEffect(() => {
+        async function FetchAllBreeds(){
+            const response = await fetch('https://dog.ceo/api/breeds/list/all');
+            const data = await response.json();
 
-      setBreeds(Object.keys(data?.message));
-    }
+            setBreeds(Object.keys(data?.message));
+        }
 
-    fetchBreedList();
-  }, []);
+        FetchAllBreeds();
+    }, [])
 
-  return (
-    <div className='App'>
-      <h1>Breed List</h1>
-      <BreedList breeds={breeds} />
-    </div>
-  );
+    
+    return (
+        <div className = 'app'>
+            <h1>Breed List</h1>
+            <BreedList breeds={breeds} />
+        </div>
+    )
 }
