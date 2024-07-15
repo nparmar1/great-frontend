@@ -2,9 +2,10 @@
 
 import React from "react";
 import ReactDOM from "react-dom/client";
+
+import TicTacToeApp from './tic-tac-toe/TicTacToeApp.jsx';
 // import TabsApp from "./tabs/TabsApp.jsx";
 // import AccordionApp from "./accordion/AccordionApp.jsx";
-// import TicTacToeApp from "./tic-tac-toe/TicTacToeApp.jsx";
 // import GridLightsApp from "./grid-lights/GridLightsApp.jsx";
 // import DataTableApp from "./data-table/DataTableApp.jsx";
 // import SearchApp from "./search-auto-complete/SearchApp.jsx";
@@ -15,7 +16,7 @@ import ReactDOM from "react-dom/client";
 // import SearchAppTwo from "./search-auto-complete-2/SearchAppTwo.jsx";
 // import PhotoCarouselApp from "./photo-carousel/PhotoCarouselApp.jsx";
 // import StarRatingApp from "./star-rating/StarRatingApp.jsx";
-import FetchBreedListApp from "./fetch-breed-list/FetchBreedListApp.jsx";
+// import FetchBreedListApp from "./fetch-breed-list/FetchBreedListApp.jsx";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
@@ -24,10 +25,10 @@ ReactDOM.createRoot(document.getElementById("root")).render(
     {/* <FlightBookerApp /> */}
     {/* <GenerateTableApp /> */}
     {/* <HackerNewsApp /> */}
-    {/* <TicTacToeApp /> */}
     {/* <TabsApp /> */}
     {/* <SearchApp /> */}
-    <FetchBreedListApp />
+    <TicTacToeApp />
+    {/* <FetchBreedListApp /> */}
     {/* <GridLightsApp /> */}
     {/* <SearchAppTwo /> */}
     {/* <PhotoCarouselApp /> */}
