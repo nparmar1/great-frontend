@@ -4,7 +4,6 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 // import TabsApp from "./tabs/TabsApp.jsx";
 // import AccordionApp from "./accordion/AccordionApp.jsx";
-import TicTacToeApp from "./tic-tac-toe/TicTacToeApp.jsx";
 // import GridLightsApp from "./grid-lights/GridLightsApp.jsx";
 // import DataTableApp from "./data-table/DataTableApp.jsx";
 // import SearchApp from "./search-auto-complete/SearchApp.jsx";
@@ -27,7 +26,6 @@ ReactDOM.createRoot(document.getElementById("root")).render(
     {/* <TabsApp /> */}
     {/* <SearchApp /> */}
     {/* <FetchBreedListApp /> */}
-    <TicTacToeApp />
     {/* <GridLightsApp /> */}
     {/* <SearchAppTwo /> */}
     {/* <PhotoCarouselApp /> */}
