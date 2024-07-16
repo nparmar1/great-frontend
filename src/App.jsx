@@ -16,6 +16,7 @@ import ReactDOM from "react-dom/client";
 // import PhotoCarouselApp from "./photo-carousel/PhotoCarouselApp.jsx";
 // import StarRatingApp from "./star-rating/StarRatingApp.jsx";
 // import FetchBreedListApp from "./fetch-breed-list/FetchBreedListApp.jsx";
+import SearchAppTwo from './search-auto-complete-2/SearchAppTwo.jsx';
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
@@ -26,6 +27,7 @@ ReactDOM.createRoot(document.getElementById("root")).render(
     {/* <HackerNewsApp /> */}
     {/* <TabsApp /> */}
     {/* <SearchApp /> */}
+    <SearchAppTwo />
     {/* <TicTacToeApp /> */}
     {/* <FetchBreedListApp /> */}
     {/* <GridLightsApp /> */}
