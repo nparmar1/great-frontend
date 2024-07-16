@@ -16,34 +16,36 @@ const fruits = [
   "banana",
 ];
 
-const getFruit = (query, fruits) => {
-  return fruits.filter((fruit) => fruit.startsWith(query.toLowerCase()));
-};
+const getFruits = (query, fruits) =>
+  fruits.filter((fruit) => fruit.startsWith(query.toLowerCase()));
 
-const getDebounceQuery = (query, time = 250) => {
-  const [value, setValue] = useState(query);
+function useDebounceQuery(value, delay = 250) {
+  const [debounceValue, setDebounceValue] = useState(value);
 
   useEffect(() => {
     const timer = setTimeout(() => {
-      setValue(query);
-    }, time);
+      setDebounceValue(value);
+    }, delay);
 
     return () => clearTimeout(timer);
-  }, [query, time]);
+  }, [value, delay]);
 
-  return value;
-};
+  return debounceValue;
+}
 
 function SearchFruit({ fruits }) {
-  const [query, setQuery] = useState("");
   const [suggestions, setSuggestions] = useState([]);
+  const [query, setQuery] = useState("");
 
-  const debounceQuery = getDebounceQuery(query);
+  const debounceQuery = useDebounceQuery(query);
+  console.log(debounceQuery);
 
   useEffect(() => {
     if (debounceQuery.length > 0) {
-      const fruit = getFruit(query, fruits);
-      setSuggestions(fruit);
+      const fruitList = getFruits(debounceQuery, fruits);
+      setSuggestions(fruitList);
+    } else {
+      setSuggestions([]);
     }
   }, [debounceQuery]);
 
@@ -52,8 +54,8 @@ function SearchFruit({ fruits }) {
       <h1>Search Fruit</h1>
       <input
         type="text"
-        placeholder="Search"
         value={query}
+        placeholder="Search"
         onChange={(e) => setQuery(e.target.value)}
       />
       {suggestions.map((suggestion, idx) => (
