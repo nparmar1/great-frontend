@@ -1,0 +1,14 @@
+.app {
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  background-color: #eee;
+}
+
+.article {
+  border: 1px solid #555;
+  margin: 8px;
+  border-radius: 5px;
+  padding: 8px;
+  background-color: white;
+}

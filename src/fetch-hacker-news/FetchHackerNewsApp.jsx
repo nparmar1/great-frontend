@@ -15,35 +15,35 @@
 import Article from "./Article";
 import { useEffect, useState } from "react";
 
-export default function HackerNewsApp() {
+export default function FetchHackerNewsApp() {
   const [ids, setIds] = useState([]);
   const [start, setStart] = useState(0);
 
   useEffect(() => {
-    async function fetchArticles() {
+    async function fetchIds() {
       const response = await fetch(
         "https://hacker-news.firebaseio.com/v0/topstories.json?print=pretty"
       );
       const data = await response.json();
-
-      const firstFiveIds = data.slice(0, start + 5);
-      setIds(firstFiveIds);
+      setIds(data.slice(0, start + 5));
     }
 
-    fetchArticles();
+    fetchIds();
   }, [start]);
 
-  function deleteIds(currId) {
-    const updatedIds = ids.filter((id) => currId !== id);
-    setIds(updatedIds);
-  }
+  const deleteId = (currId) => {
+    setIds(ids.filter((id) => currId !== id));
+  };
 
   return (
-    <div style={{ backgroundColor: "#eee" }}>
+    <div className="app">
+      <h1>Stories</h1>
       {ids.map((id, idx) => (
-        <Article key={id} id={id} deleteIds={deleteIds} />
+        <Article key={id} id={id} deleteId={deleteId} />
       ))}
-      <button onClick={() => setStart(start + 5)}>Load More</button>
+      <div>
+        <button onClick={() => setStart(start + 5)}>Load More</button>
+      </div>
     </div>
   );
 }
