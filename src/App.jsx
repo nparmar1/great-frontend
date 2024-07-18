@@ -16,6 +16,7 @@ import ReactDOM from "react-dom/client";
 // import StarRatingApp from "./star-rating/StarRatingApp.jsx";
 // import FetchHackerNewsApp from "./fetch-hacker-news/FetchHackerNewsApp.jsx";
 // import FetchBreedListApp from "./fetch-breed-list/FetchBreedListApp.jsx";
+import SearchAppTwo from "./search-auto-complete-2/SearchAppTwo";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
@@ -25,6 +26,7 @@ ReactDOM.createRoot(document.getElementById("root")).render(
     {/* <GenerateTableApp /> */}
     {/* <TabsApp /> */}
     {/* <SearchApp /> */}
+    <SearchAppTwo />
     {/* <FetchHackerNewsApp /> */}
     {/* <TicTacToeApp /> */}
     {/* <FetchBreedListApp /> */}
