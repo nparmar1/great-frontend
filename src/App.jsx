@@ -14,9 +14,9 @@ import ReactDOM from "react-dom/client";
 // import GenerateTableApp from "./generate-table/generateTableApp.jsx";
 // import PhotoCarouselApp from "./photo-carousel/PhotoCarouselApp.jsx";
 // import StarRatingApp from "./star-rating/StarRatingApp.jsx";
-import FetchHackerNewsApp from "./fetch-hacker-news/FetchHackerNewsApp.jsx";
+// import FetchHackerNewsApp from "./fetch-hacker-news/FetchHackerNewsApp.jsx";
 // import FetchBreedListApp from "./fetch-breed-list/FetchBreedListApp.jsx";
-// import SearchAppTwo from './search-auto-complete-2/SearchAppTwo.jsx';
+import SearchAppTwo from "./search-auto-complete-2/SearchAppTwo";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
@@ -26,8 +26,8 @@ ReactDOM.createRoot(document.getElementById("root")).render(
     {/* <GenerateTableApp /> */}
     {/* <TabsApp /> */}
     {/* <SearchApp /> */}
-    {/* <SearchAppTwo /> */}
-    <FetchHackerNewsApp />
+    <SearchAppTwo />
+    {/* <FetchHackerNewsApp /> */}
     {/* <TicTacToeApp /> */}
     {/* <FetchBreedListApp /> */}
     {/* <GridLightsApp /> */}

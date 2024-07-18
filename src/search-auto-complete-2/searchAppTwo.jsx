@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
 
 const fruits = [
   "orange",
@@ -16,8 +16,8 @@ const fruits = [
   "banana",
 ];
 
-const getFruits = (query, fruits) =>
-  fruits.filter((fruit) => fruit.startsWith(query.toLowerCase()));
+const getFruitList = (searchTerm) =>
+  fruits.filter((fruit) => fruit.startsWith(searchTerm.toLowerCase()));
 
 function useDebounceQuery(value, delay = 250) {
   const [debounceValue, setDebounceValue] = useState(value);
@@ -33,16 +33,15 @@ function useDebounceQuery(value, delay = 250) {
   return debounceValue;
 }
 
-function SearchFruit({ fruits }) {
-  const [suggestions, setSuggestions] = useState([]);
+export default function SearchAppTwo() {
   const [query, setQuery] = useState("");
+  const [suggestions, setSuggestions] = useState([]);
 
   const debounceQuery = useDebounceQuery(query);
-  console.log(debounceQuery);
 
   useEffect(() => {
     if (debounceQuery.length > 0) {
-      const fruitList = getFruits(debounceQuery, fruits);
+      const fruitList = getFruitList(debounceQuery);
       setSuggestions(fruitList);
     } else {
       setSuggestions([]);
@@ -65,8 +64,4 @@ function SearchFruit({ fruits }) {
       ))}
     </>
   );
-}
-
-export default function SearchAppTwo() {
-  return <SearchFruit fruits={fruits} />;
 }
