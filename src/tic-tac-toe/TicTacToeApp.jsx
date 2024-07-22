@@ -1,6 +1,6 @@
-import "./styles.css";
-import Cell from "./Cell";
 import { useState } from "react";
+import Cell from "./Cell";
+import "./styles.css";
 
 const CELLS_IN_A_LINE = [
   [0, 1, 2],
@@ -17,27 +17,26 @@ function determineWinner(board) {
   for (let i = 0; i < CELLS_IN_A_LINE.length; i++) {
     const [x, y, z] = CELLS_IN_A_LINE[i];
 
-    if (board[x] != null && board[x] === board[y] && board[y] === board[z]) {
+    if (board[x] !== null && board[x] === board[y] && board[y] === board[z])
       return board[x];
-    }
   }
 
   return null;
 }
 
 export default function TicTacToeApp() {
-  const [board, setBoard] = useState(Array(9).fill(null));
   const [isPlayerX, setIsPlayerX] = useState(true);
+  const [board, setBoard] = useState(Array(9).fill(null));
 
-  const winner = determineWinner(board);
-
-  function getStatusMessage() {
+  function getMessage(winner) {
     if (winner !== null) return `Player ${winner} wins!`;
 
     if (!board.includes(null)) return `It's a draw!`;
 
-    return `It's Player's ${isPlayerX ? "X" : "O"} turn`;
+    return `Player ${isPlayerX ? "X" : "O"} turn`;
   }
+
+  const winner = determineWinner(board);
 
   function onReset() {
     setBoard(Array(9).fill(null));
@@ -46,7 +45,7 @@ export default function TicTacToeApp() {
 
   return (
     <div className="app">
-      <div>{getStatusMessage()}</div>
+      <div>{getMessage(winner)}</div>
       <div className="board">
         {Array(9)
           .fill(null)
@@ -58,12 +57,12 @@ export default function TicTacToeApp() {
               <Cell
                 key={cellIdx}
                 mark={board[cellIdx]}
-                disabled={board[cellIdx] != null || winner != null}
+                disabled={board[cellIdx] !== null || winner !== null}
                 onClick={() => {
                   const newBoard = board.slice();
                   newBoard[cellIdx] = turn;
-                  setBoard(newBoard);
                   setIsPlayerX(!isPlayerX);
+                  setBoard(newBoard);
                 }}
               />
             );
@@ -71,14 +70,12 @@ export default function TicTacToeApp() {
       </div>
       <button
         onClick={() => {
-          if (winner == null) {
-            // Confirm whether to reset the game.
+          if (winner === null) {
             const confirm = window.confirm(
-              "Are you sure you want to reset the game?"
+              `Are you sre you want to reset the game?`
             );
-            if (!confirm) {
-              return;
-            }
+
+            if (!confirm) return;
           }
 
           onReset();
