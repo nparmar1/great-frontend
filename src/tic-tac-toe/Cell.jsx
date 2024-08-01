@@ -1,11 +1,14 @@
 import './styles.css';
 
-export default function Cell(){
+export default function Cell({ onClick, mark }){
     return (
-        <button
-            className='cell'
-        >
-            x
-        </button>
+        <>
+            <button
+                className='cell'
+                onClick={onClick}
+            >
+                {mark}
+            </button>
+        </>
     )
 }
