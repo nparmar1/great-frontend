@@ -9,7 +9,6 @@ import ReactDOM from "react-dom/client";
 // import DataTableApp from "./data-table/DataTableApp.jsx";
 // import SearchApp from "./search-auto-complete/SearchApp.jsx";
 // import ContactFormApp from "./contact-form/ContactFormApp.jsx";
-import TicTacToeApp from "./tic-tac-toe/TicTacToeApp";
 // import FlightBookerApp from "./flight-booker/FlightBookerApp.jsx";
 // import GenerateTableApp from "./generate-table/generateTableApp.jsx";
 // import PhotoCarouselApp from "./photo-carousel/PhotoCarouselApp.jsx";
@@ -26,7 +25,6 @@ ReactDOM.createRoot(document.getElementById("root")).render(
     {/* <GenerateTableApp /> */}
     {/* <TabsApp /> */}
     {/* <SearchApp /> */}
-    <TicTacToeApp />
     {/* <SearchAppTwo /> */}
     {/* <FetchHackerNewsApp /> */}
     {/* <FetchBreedListApp /> */}
