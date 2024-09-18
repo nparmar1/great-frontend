@@ -12,8 +12,9 @@
 * bonus: load more feature
 */
 
-import Article from "./Article";
 import { useEffect, useState } from "react";
+import Article from "./Articles";
+import "./styles.css";
 
 export default function FetchHackerNewsApp() {
   const [ids, setIds] = useState([]);
@@ -21,19 +22,21 @@ export default function FetchHackerNewsApp() {
 
   useEffect(() => {
     async function fetchIds() {
-      const response = await fetch(
+      const data = await fetch(
         "https://hacker-news.firebaseio.com/v0/topstories.json?print=pretty"
       );
-      const data = await response.json();
-      setIds(data.slice(0, start + 5));
+
+      const response = await data.json();
+      setIds(response.slice(0, start + 5));
     }
 
     fetchIds();
   }, [start]);
 
-  const deleteId = (currId) => {
-    setIds(ids.filter((id) => currId !== id));
-  };
+  function deleteId(currId) {
+    const updatedIds = ids.filter((id) => id !== currId);
+    setIds(updatedIds);
+  }
 
   return (
     <div className="app">
