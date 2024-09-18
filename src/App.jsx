@@ -12,6 +12,7 @@ import ReactDOM from "react-dom/client";
 // import ContactFormApp from "./contact-form/ContactFormApp.jsx";
 // import FlightBookerApp from "./flight-booker/FlightBookerApp.jsx";
 // import GenerateTableApp from "./generate-table/generateTableApp.jsx";
+import FetchHackerNewsApp from "./fetch-hacker-news/FetchHackerNewsApp";
 // import PhotoCarouselApp from "./photo-carousel/PhotoCarouselApp.jsx";
 // import StarRatingApp from "./star-rating/StarRatingApp.jsx";
 // import FetchBreedListApp from "./fetch-breed-list/FetchBreedListApp.jsx";
@@ -28,6 +29,7 @@ ReactDOM.createRoot(document.getElementById("root")).render(
     {/* <SearchAppTwo /> */}
     {/* <TicTacToeApp /> */}
     {/* <FetchBreedListApp /> */}
+    <FetchHackerNewsApp />
     {/* <GridLightsApp /> */}
     {/* <PhotoCarouselApp /> */}
     {/* <DataTableApp /> */}
