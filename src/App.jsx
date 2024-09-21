@@ -11,8 +11,8 @@ import ReactDOM from "react-dom/client";
 // import SearchApp from "./search-auto-complete/SearchApp.jsx";
 // import ContactFormApp from "./contact-form/ContactFormApp.jsx";
 // import FlightBookerApp from "./flight-booker/FlightBookerApp.jsx";
-// import GenerateTableApp from "./generate-table/generateTableApp.jsx";
 import FetchHackerNewsApp from "./fetch-hacker-news/FetchHackerNewsApp";
+// import GenerateTableApp from "./generate-table/generateTableApp.jsx";
 // import PhotoCarouselApp from "./photo-carousel/PhotoCarouselApp.jsx";
 // import StarRatingApp from "./star-rating/StarRatingApp.jsx";
 // import FetchHackerNewsApp from "./fetch-hacker-news/FetchHackerNewsApp.jsx";
@@ -29,10 +29,9 @@ ReactDOM.createRoot(document.getElementById("root")).render(
     {/* <TicTacToeApp /> */}
     {/* <SearchApp /> */}
     {/* <SearchAppTwo /> */}
-    {/* <FetchHackerNewsApp /> */}
+    <FetchHackerNewsApp />
     {/* <TicTacToeApp /> */}
     {/* <FetchBreedListApp /> */}
-    <FetchHackerNewsApp />
     {/* <GridLightsApp /> */}
     {/* <PhotoCarouselApp /> */}
     {/* <DataTableApp /> */}
